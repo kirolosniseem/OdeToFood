@@ -1,0 +1,38 @@
+﻿@page  "{restaurantId:int}"
+
+@model OdeToFood.Pages.Restaurants.DetailsModel
+@{
+    <div>Id: @Model.restaurant.Id</div>
+    <div>Name: @Model.restaurant.Name</div>
+    <div>Location: @Model.restaurant.Location</div>
+    <div>Type: @Model.restaurant.RestaurantType</div>
+
+    <br />
+
+    <div class="border border-light">
+        <partial name="_summaryPartialView" model="@Model.restaurant" />
+        <br />
+
+        View component : <vc:restaurants-count></vc:restaurants-count>
+        <br />
+
+        View component with param : <vc:current-date curent-date="@DateTime.Now"></vc:current-date>
+        <br />
+
+        <a asp-page="./List" class="button">All Restaurants</a>
+    </div>
+
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info">@Model.Message</div>
+    }
+
+    <br />
+
+    @section AllRests{
+        <div>
+            <a asp-page="./List" class="button">All Restaurants</a>
+        </div>
+    }
+
+}
