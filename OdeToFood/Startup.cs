@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,6 +52,9 @@ namespace OdeToFood
             }
 
             app.UseHttpsRedirection();
+
+            app.Use(CustomMiddlewareWho);
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -63,5 +67,23 @@ namespace OdeToFood
                 endpoints.MapControllers();
             });
         }
+
+        private RequestDelegate CustomMiddlewareWho(RequestDelegate arg)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/who"))
+                {
+                    //execute this middle ware and stop
+                    await ctx.Response.WriteAsync("Kirolos Niseem");
+                }
+                else
+                {
+                    //pass to next middleware
+                    await arg(ctx);
+                }
+            };
+        }
+
     }
 }
