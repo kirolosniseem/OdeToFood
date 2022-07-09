@@ -8,10 +8,10 @@ namespace UsersIdentity
 {
     public class OdeToFoodUser : IdentityUser
     {
-        [Required, MaxLength(50)]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
-        [Required, MaxLength(50)]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
         public OdeToFoodUser() : base ()
