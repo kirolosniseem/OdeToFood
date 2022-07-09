@@ -11,13 +11,13 @@ namespace OdeToFood.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        UserManager<UsersIdentity.OdeToFoodUser> _userManager;
+        private readonly SignInManager<UsersIdentity.OdeToFoodUser> _signInManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<UsersIdentity.OdeToFoodUser> userManager,
+            SignInManager<UsersIdentity.OdeToFoodUser> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

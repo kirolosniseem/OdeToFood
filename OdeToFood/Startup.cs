@@ -34,8 +34,10 @@ namespace OdeToFood
 
             services.AddControllers();
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<UserIdentityDBContext>();
+            services.AddIdentity<OdeToFoodUser, IdentityRole>()
+                .AddEntityFrameworkStores<UserIdentityDBContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.AddDbContextPool<OdeToFoodDBContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDB"));

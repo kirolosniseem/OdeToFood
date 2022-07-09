@@ -11,13 +11,13 @@ namespace OdeToFood.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<UsersIdentity.OdeToFoodUser> _userManager;
+        private readonly SignInManager<UsersIdentity.OdeToFoodUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<UsersIdentity.OdeToFoodUser> userManager,
+            SignInManager<UsersIdentity.OdeToFoodUser> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UsersIdentity
 {
-    public class UserIdentityDBContext : IdentityDbContext
+    public class UserIdentityDBContext : IdentityDbContext<OdeToFoodUser>
     {
         public UserIdentityDBContext(DbContextOptions<UserIdentityDBContext> options)
             :base(options)

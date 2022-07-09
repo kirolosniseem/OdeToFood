@@ -14,10 +14,10 @@ namespace OdeToFood.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailChangeModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<UsersIdentity.OdeToFoodUser> _userManager;
+        private readonly SignInManager<UsersIdentity.OdeToFoodUser> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public ConfirmEmailChangeModel(UserManager<UsersIdentity.OdeToFoodUser> userManager, SignInManager<UsersIdentity.OdeToFoodUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
