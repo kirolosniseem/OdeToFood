@@ -49,6 +49,23 @@ namespace OdeToFood
                 options.UseSqlServer(Configuration.GetConnectionString("UserIdentity"));
             });
 
+            services.AddAuthentication()
+                .AddMicrosoftAccount(options =>
+                {
+                    options.ClientId = Configuration.GetSection("Authentication:Microsoft")["ClientId"];
+                    options.ClientSecret = Configuration.GetSection("Authentication:Microsoft")["ClientSecret"];
+                })
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration.GetSection("Authentication:Google")["ClientId"];
+                    options.ClientSecret = Configuration.GetSection("Authentication:Google")["ClientSecret"];
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = Configuration.GetSection("Authentication:Facebook")["AppId"];
+                    options.AppSecret = Configuration.GetSection("Authentication:Facebook")["AppSecret"];
+                });
+
             //services.AddSingleton<IRestaurantRepository, RestaurantInMemoryRepo>();
             services.AddScoped<IRestaurantRepository, RestaurantSQLDatabaseRepo>();
 
