@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UsersIdentity;
 
 namespace OdeToFood
 {
@@ -29,9 +31,16 @@ namespace OdeToFood
             services.AddRazorPages();
             services.AddControllers();
 
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<UserIdentityDBContext>();
+
             services.AddDbContextPool<OdeToFoodDBContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDB"));
                 });
+
+            services.AddDbContextPool<UserIdentityDBContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("UserIdentity"));
+            });
 
             //services.AddSingleton<IRestaurantRepository, RestaurantInMemoryRepo>();
             services.AddScoped<IRestaurantRepository, RestaurantSQLDatabaseRepo>();
@@ -58,6 +67,8 @@ namespace OdeToFood
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
